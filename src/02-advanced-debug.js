@@ -26,3 +26,81 @@ function goodPractices() {
 
 // then, call the function so it runs!
 goodPractices()
+
+
+function numPointsScored(playerName) {
+  let game = gameObject();
+  for (let teamKey in game) {
+    let teamObj = game[teamKey];
+    for (let player of teamObj.players) {
+      if (player.name === playerName) {
+        return player.points;
+      }
+    }
+  }
+  return null; // if player not found
+}
+
+function shoeSize(playerName) {
+  let game = gameObject();
+  for (let teamKey in game) {
+    let teamObj = game[teamKey];
+    for (let player of teamObj.players) {
+      if (player.name === playerName) {
+        return player.shoe;
+      }
+    }
+  }
+  return null; // if player not found
+}
+
+function teamColors(teamName) {
+  let game = gameObject();
+  for (let teamKey in game) {
+    let teamObj = game[teamKey];
+    if (teamObj.teamName === teamName) {
+      return teamObj.color;
+    }
+  }
+  return null; // if team not found
+}
+function teamNames() {
+  let game = gameObject();
+  return [game.homeTeamName, game.awayTeamName];
+}
+
+function playerNumbers(){
+  return[game.homeTeam.players.length, game.awayTeam.players.length]
+}
+
+function playerStats(){
+  let game = gameObject();
+  let stats = {};
+  for (let teamKey in game) {
+    let teamObj = game[teamKey];
+    for (let player of teamObj.players) {
+      stats[player.name] = {
+        points: player.points,
+        shoe: player.shoe
+      };
+    }
+  }
+  return stats;
+}
+
+function bigShoeRebounds() {
+  let game = gameObject();
+  let maxShoe = -Infinity;
+  let rebounds = null;
+
+  for (let teamKey in game) {
+    let teamObj = game[teamKey];
+    for (let player of teamObj.players) {
+      if (player.shoe > maxShoe) {
+        maxShoe = player.shoe;
+        rebounds = player.rebounds;
+      }
+    }
+  }
+  return rebounds;
+}
